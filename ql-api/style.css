@@ -67,3 +67,117 @@ button:hover {
   padding: 15px;
   border-radius: 4px;
 }
+body {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+/* Make layout adapt better on small screens */
+@media (max-width: 600px) {
+  body {
+    margin: 20px;
+    padding: 15px;
+  }
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+  font-size: 24px;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 20px;
+  }
+}
+
+.link {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+/* Stack input and button vertically on small screens */
+@media (max-width: 500px) {
+  .link {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#result {
+  margin-top: 20px;
+}
+
+.success,
+.error {
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+
+.success p {
+  margin: 10px 0;
+}
+
+.success a {
+  color: #004085;
+  text-decoration: underline;
+}
+
+.error {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+}
+.logo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 120px;   /* adjust size if needed */
+  height: auto;
+}
+
+/* Make it smaller on mobile */
+@media (max-width: 600px) {
+  .logo {
+    width: 80px;
+    top: 10px;
+    right: 10px;
+  }
+}
