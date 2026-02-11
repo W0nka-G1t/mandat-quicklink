@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+app.set('trust proxy', 1);
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
@@ -18,7 +19,7 @@ const defineLink = require('./common/models/link');
 const User = defineUser(sequelize);
 const Link = defineLink(sequelize);
 
-// Initialize database and routes before listening
+// Initialiser la base de données et demarrer le serveur
 sequelize.sync().then(() => {
   const authRoutes = require('./authorization/routes');
   app.use('/', authRoutes);
@@ -36,7 +37,7 @@ sequelize.sync().then(() => {
   });
 
   const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
 }).catch(err => {
   console.error('Database sync failed:', err);
   process.exit(1);

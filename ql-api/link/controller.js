@@ -14,7 +14,7 @@ const schema = {
 };
 const validate = ajv.compile(schema);
 
-// Generate a random short code
+// creer un code raccourci unique 
 const generateShortCode = () => {
   return Math.random().toString(36).substring(2, 8).toUpperCase();
 };
@@ -23,12 +23,12 @@ exports.createLink = async (req, res) => {
   try {
     const { url } = req.body;
 
-    // Validate input
+    // Valide l'input
     if (!validate(req.body)) {
       return res.status(400).json({ success: false, error: 'Invalid URL format' });
     }
 
-    // Generate unique short code
+    // Génère un code raccourci unique
     let shortCode;
     let exists = true;
     while (exists) {
@@ -37,7 +37,7 @@ exports.createLink = async (req, res) => {
       exists = !!found;
     }
 
-    // Create the link
+    // Cree le lien dans la base de données
     const link = await Link.create({
       originalUrl: url,
       shortCode: shortCode,
@@ -47,7 +47,7 @@ exports.createLink = async (req, res) => {
     res.status(201).json({
       success: true,
       shortCode: link.shortCode,
-      shortUrl: `http://localhost:3000/link/${link.shortCode}`,
+      shortUrl: `/link/${link.shortCode}`,
       originalUrl: link.originalUrl
     });
   } catch (err) {
@@ -64,11 +64,11 @@ exports.getLink = async (req, res) => {
       return res.status(404).json({ success: false, error: 'Link not found' });
     }
 
-    // Increment click count
+    // Incrementer le compteur de clics
     link.clicks += 1;
     await link.save();
 
-    // Redirect to original URL
+    // Rediriger vers l'URL originale
     res.redirect(link.originalUrl);
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
