@@ -1,3 +1,5 @@
+const { use } = require("react");
+
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   
@@ -26,4 +28,11 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
   } catch (err) {
     resultDiv.innerHTML = `<div class="error">Error: ${err.message}</div>`;
   }
-});
+}); 
+if user.name === "admin" && user.password === "admin123" {
+    // Redirect to the dashboard or home page
+    window.location.href = "dashboard.html";
+} else {
+    // Show an error message
+    document.getElementById('result').innerHTML = `<div class="error">Invalid username or password</div>`;
+}   
