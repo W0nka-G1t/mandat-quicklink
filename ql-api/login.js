@@ -31,7 +31,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
 }); 
 if (username === "admin" && password === "admin123") {
     // Redirect to the dashboard or home page
-    window.location.href = "dashboard.html";
+    window.location.href = "index.html";
 } else {
     // Show an error message
     document.getElementById('result').innerHTML = `<div class="error">Invalid username or password</div>`;
