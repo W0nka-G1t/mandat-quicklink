@@ -1,84 +1,89 @@
+/* Reset simple */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Fond de page */
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #4CAF50, #45a049);
+    height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
 }
 
-/* Page Title */
+/* Titre */
 h1 {
     margin-bottom: 20px;
-    color: #333;
-}
-
-/* Register Box */
-.register {
-    background: white;
-    padding: 30px;
-    width: 320px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-/* Input Fields */
-.register input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: border 0.3s;
-}
-
-.register input:focus {
-    border-color: #4CAF50;
-    outline: none;
-}
-
-/* Register Button */
-.register button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #4CAF50;
     color: white;
+    font-size: 32px;
+}
+
+/* Formulaire */
+.register {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+/* Champs input */
+.register input {
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+/* Focus input */
+.register input:focus {
+    border-color: #4e73df;
+    outline: none;
+    box-shadow: 0 0 5px rgba(78, 115, 223, 0.4);
+}
+
+/* Bouton */
+.register button {
+    padding: 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    background-color: #4e73df;
+    color: white;
     font-size: 15px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
+    transition: 0.3s;
 }
 
+/* Hover bouton */
 .register button:hover {
-    background-color: #45a049;
+    background-color: #2e59d9;
 }
 
-.register button:active {
-    transform: scale(0.98);
-}
-
-/* Links */
+/* Liens */
 a {
-    display: block;
     margin-top: 15px;
-    color: #4CAF50;
+    color: white;
     text-decoration: none;
     font-size: 14px;
+    transition: 0.3s;
 }
 
 a:hover {
     text-decoration: underline;
 }
 
-/* Result Message */
+/* Résultat message */
 #result {
-    margin-top: 10px;
-    font-size: 14px;
+    margin-top: 15px;
+    color: white;
     font-weight: bold;
-    color: red;
 }
