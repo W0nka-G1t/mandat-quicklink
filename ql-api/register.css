@@ -1,58 +1,84 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    text-align: center;
-    margin-top: 100px;
+    background: linear-gradient(to right, #4CAF50, #45a049);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
+/* Page Title */
 h1 {
     margin-bottom: 20px;
+    color: #333;
 }
 
+/* Register Box */
 .register {
     background: white;
-    padding: 20px;
-    width: 250px;
-    margin: auto;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 30px;
+    width: 320px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
+/* Input Fields */
 .register input {
     width: 100%;
-    padding: 8px;
-    margin: 8px 0;
+    padding: 10px;
+    margin: 10px 0;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border 0.3s;
 }
 
+.register input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Register Button */
 .register button {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
+    margin-top: 10px;
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
+    font-size: 15px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
 }
 
-.login button:hover {
+.register button:hover {
     background-color: #45a049;
 }
 
+.register button:active {
+    transform: scale(0.98);
+}
+
+/* Links */
 a {
     display: block;
     margin-top: 15px;
-    color: #333;
+    color: #4CAF50;
     text-decoration: none;
+    font-size: 14px;
 }
 
 a:hover {
     text-decoration: underline;
 }
 
+/* Result Message */
 #result {
     margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
     color: red;
 }
-
