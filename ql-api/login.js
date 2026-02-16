@@ -29,7 +29,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     resultDiv.innerHTML = `<div class="error">Error: ${err.message}</div>`;
   }
 }); 
-if user.name === "admin" && user.password === "admin123" {
+if (username === "admin" && password === "admin123") {
     // Redirect to the dashboard or home page
     window.location.href = "dashboard.html";
 } else {
