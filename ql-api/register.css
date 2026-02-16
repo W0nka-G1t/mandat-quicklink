@@ -1,89 +1,50 @@
-/* Reset simple */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Fond de page */
 body {
-    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #4e73df, #1cc88a);
+    margin-top: 100px;
 }
 
-/* Titre */
 h1 {
     margin-bottom: 20px;
-    color: white;
-    font-size: 32px;
 }
 
-/* Formulaire */
 .register {
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 250px;
 }
 
-/* Champs input */
 .register input {
-    margin-bottom: 15px;
-    padding: 12px;
-    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 8px;
     border: 1px solid #ccc;
-    font-size: 14px;
-    transition: 0.3s;
 }
 
-/* Focus input */
-.register input:focus {
-    border-color: #4e73df;
-    outline: none;
-    box-shadow: 0 0 5px rgba(78, 115, 223, 0.4);
-}
-
-/* Bouton */
 .register button {
-    padding: 12px;
+    padding: 8px;
     border: none;
-    border-radius: 8px;
-    background-color: #4e73df;
+    background-color: #333;
     color: white;
-    font-size: 15px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-/* Hover bouton */
 .register button:hover {
-    background-color: #2e59d9;
+    background-color: #555;
 }
 
-/* Liens */
 a {
-    margin-top: 15px;
-    color: white;
+    margin-top: 10px;
     text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s;
+    color: #333;
 }
 
 a:hover {
     text-decoration: underline;
 }
 
-/* Résultat message */
 #result {
-    margin-top: 15px;
-    color: white;
-    font-weight: bold;
+    margin-top: 10px;
 }
