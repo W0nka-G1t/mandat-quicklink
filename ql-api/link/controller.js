@@ -74,3 +74,12 @@ exports.getLink = async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 };
+
+exports.getAllLinks = async (req, res) => {
+  try {
+    const links = await Link.findAll({ order: [['createdAt', 'DESC']] });
+    res.status(200).json({ success: true, links });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
