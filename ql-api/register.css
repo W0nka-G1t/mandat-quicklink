@@ -27,6 +27,7 @@ h1 {
     margin-bottom: 30px;
     font-weight: 600;
     letter-spacing: 1px;
+    font-size: 28px;
 }
 
 /* Register Form/Card */
@@ -116,19 +117,91 @@ a:hover {
     }
 }
 
-/* Mobile Responsive */
-@media (max-width: 480px) {
-    .register {
-        padding: 30px 20px;
+/* Tablet Responsive - Medium screens (481px - 768px) */
+@media (max-width: 768px) {
+    body {
+        padding: 25px 15px;
+        min-height: auto;
     }
 
     h1 {
-        font-size: 22px;
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    .register {
+        padding: 35px 30px;
+        max-width: 380px;
+        gap: 16px;
     }
 
     .register input,
     .register button {
         font-size: 14px;
-        padding: 10px;
+        padding: 11px;
+    }
+
+    a {
+        font-size: 13px;
+        margin-top: 12px;
     }
 }
+
+/* Mobile Responsive - Small screens (max 480px) */
+@media (max-width: 480px) {
+    body {
+        padding: 20px 15px;
+    }
+
+    h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+        letter-spacing: 0.5px;
+    }
+
+    .register {
+        padding: 30px 20px;
+        max-width: 100%;
+        gap: 15px;
+    }
+
+    .register input,
+    .register button {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+
+    a {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    #result {
+        font-size: 12px;
+    }
+}
+
+/* Extra small screens (max 360px) */
+@media (max-width: 360px) {
+    body {
+        padding: 15px 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .register {
+        padding: 25px 15px;
+        gap: 12px;
+    }
+
+    .register input,
+    .register button {
+        font-size: 13px;
+        padding: 9px 10px;
+    }
+
+    a {
+        font-size: 11px;

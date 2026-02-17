@@ -23,6 +23,7 @@ body {
 /* Logo */
 .logo {
     max-width: 150px;
+    width: 100%;
     margin-bottom: 25px;
     border-radius: 8px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -35,6 +36,7 @@ h1 {
     margin-bottom: 30px;
     font-weight: 600;
     letter-spacing: 1px;
+    font-size: 28px;
 }
 
 /* Link Form/Card */
@@ -124,23 +126,102 @@ a:hover {
     }
 }
 
-/* Mobile Responsive */
-@media (max-width: 480px) {
+/* Tablet Responsive - Medium screens (481px - 768px) */
+@media (max-width: 768px) {
+    body {
+        padding: 30px 15px;
+    }
+
     .logo {
-        max-width: 120px;
+        max-width: 140px;
+        margin-bottom: 20px;
     }
 
     h1 {
-        font-size: 22px;
+        font-size: 24px;
+        margin-bottom: 25px;
     }
 
     .link {
-        padding: 25px 20px;
+        padding: 30px 25px;
+        max-width: 400px;
     }
 
     .link input,
     .link button {
         font-size: 14px;
-        padding: 10px;
+        padding: 11px;
+    }
+
+    a {
+        font-size: 13px;
+        margin-top: 15px;
     }
 }
+
+/* Mobile Responsive - Small screens (max 480px) */
+@media (max-width: 480px) {
+    body {
+        padding: 20px 15px;
+        justify-content: center;
+    }
+
+    .logo {
+        max-width: 120px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        letter-spacing: 0.5px;
+    }
+
+    .link {
+        padding: 25px 20px;
+        max-width: 100%;
+        gap: 15px;
+    }
+
+    .link input,
+    .link button {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+
+    a {
+        font-size: 12px;
+        margin-top: 12px;
+    }
+
+    #result {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+}
+
+/* Extra small screens (max 360px) */
+@media (max-width: 360px) {
+    body {
+        padding: 15px 10px;
+    }
+
+    .logo {
+        max-width: 100px;
+        margin-bottom: 12px;
+    }
+
+    h1 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .link {
+        padding: 20px 15px;
+        gap: 12px;
+    }
+
+    .link input,
+    .link button {
+        font-size: 13px;
+        padding: 9px 10px;
