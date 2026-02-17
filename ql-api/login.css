@@ -14,18 +14,10 @@ body {
     background-color: #0f1e3d; /* Dark Blue Background */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 40px 20px;
-}
-
-/* Logo */
-.logo {
-    max-width: 150px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    padding: 20px;
 }
 
 /* Heading */
@@ -37,22 +29,22 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* Link Form/Card */
-.link {
+/* Login Form/Card */
+.login {
     display: flex;
     flex-direction: column;
-    gap: 18px; /* Spacing between input and button */
+    gap: 18px; /* Vertical spacing between inputs and button */
     background-color: #ffffff;
-    padding: 35px 30px;
+    padding: 40px 35px;
     border-radius: 14px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
     width: 100%;
-    max-width: 450px;
+    max-width: 400px;
     animation: fadeIn 0.6s ease-in-out;
 }
 
-/* Input */
-.link input {
+/* Inputs */
+.login input {
     width: 100%;
     padding: 12px 14px;
     border: 1px solid #ddd;
@@ -61,14 +53,14 @@ h1 {
     transition: 0.3s ease;
 }
 
-.link input:focus {
+.login input:focus {
     border-color: #0f1e3d;
     outline: none;
     box-shadow: 0 0 0 3px rgba(15, 30, 61, 0.15);
 }
 
 /* Button */
-.link button {
+.login button {
     padding: 12px;
     background-color: #0f1e3d;
     color: white;
@@ -80,12 +72,12 @@ h1 {
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
 }
 
-.link button:hover {
+.login button:hover {
     background-color: #1b2f5c;
     transform: translateY(-2px);
 }
 
-.link button:active {
+.login button:active {
     transform: scale(0.98);
 }
 
@@ -93,7 +85,7 @@ h1 {
 a {
     display: block;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
     color: #dfe6ff;
     text-decoration: none;
     font-size: 14px;
@@ -106,7 +98,7 @@ a:hover {
 
 /* Result Message */
 #result {
-    margin-top: 15px;
+    margin-top: 12px;
     font-size: 14px;
     text-align: center;
     color: #ff6b6b;
@@ -126,20 +118,16 @@ a:hover {
 
 /* Mobile Responsive */
 @media (max-width: 480px) {
-    .logo {
-        max-width: 120px;
+    .login {
+        padding: 30px 20px;
     }
 
     h1 {
         font-size: 22px;
     }
 
-    .link {
-        padding: 25px 20px;
-    }
-
-    .link input,
-    .link button {
+    .login input,
+    .login button {
         font-size: 14px;
         padding: 10px;
     }
