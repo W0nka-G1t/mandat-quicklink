@@ -8,24 +8,19 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   try {
     const response = await fetch('/login', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })
     });
 
     const data = await response.json();
 
     if (data.success) {
-      // ✅ Successful login → redirect to index.html
       window.location.href = "index.html";
-      // OR if you want a hard reload:
-      // window.location.replace("index.html");
     } else {
-      resultDiv.innerHTML = `<div class="error">Invalid username or password</div>`;
+      resultDiv.innerHTML = `<div style="color:red;">Invalid username or password</div>`;
     }
 
   } catch (err) {
-    resultDiv.innerHTML = `<div class="error">Error: ${err.message}</div>`;
+    resultDiv.innerHTML = `<div style="color:red;">Error: ${err.message}</div>`;
   }
 });
