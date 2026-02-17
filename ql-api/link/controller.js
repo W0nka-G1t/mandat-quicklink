@@ -77,9 +77,12 @@ exports.getLink = async (req, res) => {
 
 exports.getAllLinks = async (req, res) => {
   try {
+    console.log('getAllLinks called - User:', req.user);
     const links = await Link.findAll({ order: [['createdAt', 'DESC']] });
+    console.log('Found', links.length, 'links');
     res.status(200).json({ success: true, links });
   } catch (err) {
+    console.error('getAllLinks error:', err.message);
     res.status(500).json({ success: false, error: err.message });
   }
 };

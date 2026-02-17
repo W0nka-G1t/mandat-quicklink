@@ -7,6 +7,9 @@ router.post('/', LinkController.createLink);
 router.get('/:code', LinkController.getLink);
 
 // Admin: voir tous les liens courts créés
-router.get('/all', IsAuthenticated.check, CheckPermission.has('admin'), LinkController.getAllLinks);
+router.get('/all', IsAuthenticated.check, CheckPermission.has('admin'), (req, res, next) => {
+  console.log('Route /link/all hit - UserID:', req.user?.userId, 'Username:', req.user?.username);
+  next();
+}, LinkController.getAllLinks);
 
 module.exports = router;
