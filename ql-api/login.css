@@ -1,3 +1,6 @@
+/* Optional Google Font */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap'); */
+
 /* Reset */
 * {
     box-sizing: border-box;
@@ -7,19 +10,14 @@
 
 /* Body */
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
     background-color: #0f1e3d; /* Dark Blue Background */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-}
-
-/* Container (wrap login + heading inside this for best alignment) */
-.container {
-    width: 100%;
-    max-width: 400px;
 }
 
 /* Heading */
@@ -31,15 +29,18 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* Login Card */
+/* Login Form/Card */
 .login {
-    background-color: #ffffff;
-    padding: 40px 35px;
-    border-radius: 12px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
-    gap: 18px; /* Better spacing between elements */
+    gap: 18px; /* Vertical spacing between inputs and button */
+    background-color: #ffffff;
+    padding: 40px 35px;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.6s ease-in-out;
 }
 
 /* Inputs */
@@ -60,7 +61,6 @@ h1 {
 
 /* Button */
 .login button {
-    width: 100%;
     padding: 12px;
     background-color: #0f1e3d;
     color: white;
@@ -69,18 +69,23 @@ h1 {
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
 }
 
 .login button:hover {
     background-color: #1b2f5c;
+    transform: translateY(-2px);
+}
+
+.login button:active {
+    transform: scale(0.98);
 }
 
 /* Links */
 a {
     display: block;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
     color: #dfe6ff;
     text-decoration: none;
     font-size: 14px;
@@ -99,7 +104,19 @@ a:hover {
     color: #ff6b6b;
 }
 
-/* Mobile */
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsive */
 @media (max-width: 480px) {
     .login {
         padding: 30px 20px;
@@ -107,5 +124,11 @@ a:hover {
 
     h1 {
         font-size: 22px;
+    }
+
+    .login input,
+    .login button {
+        font-size: 14px;
+        padding: 10px;
     }
 }
