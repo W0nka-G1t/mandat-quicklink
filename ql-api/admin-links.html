@@ -25,7 +25,10 @@
 <body>
     <div class="header">
         <h1>Admin - Tous les liens raccourcis</h1>
-        <button class="logout-btn" onclick="logout()">Déconnexion</button>
+        <div style="display: flex; gap: 10px;">
+            <a href="manage-users.html" style="padding: 8px 16px; background-color: #17a2b8; color: white; text-decoration: none; border-radius: 4px; cursor: pointer;">👥 Gérer les utilisateurs</a>
+            <button class="logout-btn" onclick="logout()">Déconnexion</button>
+        </div>
     </div>
 
     <div id="error" class="error" style="display: none;"></div>
