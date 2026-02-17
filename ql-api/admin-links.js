@@ -50,6 +50,7 @@ async function loadAllLinks() {
   errorDiv.style.display = 'none';
 
   try {
+    console.log('Fetching /link/all with token:', token ? 'present' : 'missing');
     const response = await fetch('/link/all', {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -57,19 +58,21 @@ async function loadAllLinks() {
       }
     });
 
+    console.log('Response status:', response.status);
+    const data = await response.json();
+    console.log('Response data:', data);
+
     loader.style.display = 'none';
 
     if (!response.ok) {
       if (response.status === 403) {
-        errorDiv.textContent = 'Accès refusé. Vous devez être administrateur pour voir tous les liens.';
+        errorDiv.textContent = `Accès refusé. ${data.error || 'Vous devez être administrateur pour voir tous les liens.'}`;
       } else {
-        errorDiv.textContent = `Erreur: ${response.status} ${response.statusText}`;
+        errorDiv.textContent = `Erreur: ${response.status} - ${data.error || response.statusText}`;
       }
       errorDiv.style.display = 'block';
       return;
     }
-
-    const data = await response.json();
 
     if (!data.success || !data.links || data.links.length === 0) {
       noLinks.style.display = 'block';

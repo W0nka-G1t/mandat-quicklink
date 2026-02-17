@@ -57,12 +57,13 @@ async function updateUserRole(userId, newRole, username) {
     });
 
     const data = await response.json();
+    console.log('Update role response:', response.status, data);
 
     if (response.ok && data.success) {
       showMessage(`✓ Utilisateur ${username} promu en ${newRole === 'admin' ? 'administrateur' : 'utilisateur'}`, 'success');
       loadAllUsers();
     } else {
-      showMessage(`✗ Erreur: ${data.error}`, 'error');
+      showMessage(`✗ Erreur: ${data.error || 'Erreur inconnue'}`, 'error');
     }
   } catch (err) {
     showMessage(`✗ Erreur: ${err.message}`, 'error');
@@ -119,6 +120,7 @@ async function loadAllUsers() {
   errorDiv.style.display = 'none';
 
   try {
+    console.log('Fetching /user/all with token:', token ? 'present' : 'missing');
     const response = await fetch('/user/all', {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -126,19 +128,21 @@ async function loadAllUsers() {
       }
     });
 
+    console.log('Response status:', response.status);
+    const data = await response.json();
+    console.log('Response data:', data);
+
     loader.style.display = 'none';
 
     if (!response.ok) {
       if (response.status === 403) {
-        errorDiv.textContent = 'Accès refusé.';
+        errorDiv.textContent = `Accès refusé. ${data.error || ''}`;
       } else {
-        errorDiv.textContent = `Erreur: ${response.status} ${response.statusText}`;
+        errorDiv.textContent = `Erreur: ${response.status} - ${data.error || response.statusText}`;
       }
       errorDiv.style.display = 'block';
       return;
     }
-
-    const data = await response.json();
 
     if (!data.success || !data.data || data.data.length === 0) {
       noUsers.style.display = 'block';

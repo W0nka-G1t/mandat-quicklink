@@ -16,6 +16,8 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
     if (data.success) {
       // Store token and username in localStorage
+      console.log('Login successful. User data:', data.user);
+      console.log('User role:', data.user.role);
       localStorage.setItem('authToken', data.token);
       localStorage.setItem('username', data.user.username);
       localStorage.setItem('role', data.user.role);

@@ -26,7 +26,7 @@ function initializeNavigation() {
       console.log('Role check:', role, typeof role, role === 'admin');
       
       if (role === 'admin') {
-        navHtml += `<div style="margin-bottom: 8px;"><a href="admin-links.html" style="text-decoration: none; color: #007bff; font-weight: bold;">📊 Voir tous les liens</a></div>`;
+        navHtml += `<div style="margin-bottom: 8px;"><a href="admin-links.html" style="text-decoration: none; color: #007bff; font-weight: bold;"> Voir tous les liens</a></div>`;
       } else {
         navHtml += `<div style="margin-bottom: 8px; font-size: 12px; color: #666;">(Rôle: ${role || 'utilisateur'})</div>`;
       }
