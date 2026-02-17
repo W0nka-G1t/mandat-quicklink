@@ -20,7 +20,7 @@ document.getElementById('linkForm').addEventListener('submit', async (e) => {
         <div class="success">
           <p>Shortened URL created!</p>
           <p>Short Code: <strong>${data.shortCode}</strong></p>
-          <p>Short URL: <a href="section.click${data.shortUrl}" target="_blank">${data.shortUrl}</a></p>
+          <p>Short URL: <a href="section.click/${data.shortUrl}" target="_blank">${data.shortUrl}</a></p>
           <p>Original URL: ${data.originalUrl}</p>
         </div>
       `;
