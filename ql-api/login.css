@@ -1,13 +1,14 @@
-/* Reset & Base */
+/* Reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Body */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,74 +18,103 @@ body {
 
 /* Heading */
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     text-align: center;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 /* Login Card */
 .login {
-    background: white;
-    padding: 25px;
+    background: #ffffff;
+    padding: 35px;
     width: 100%;
-    max-width: 350px;   /* Responsive width */
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 380px;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.6s ease-in-out;
 }
 
 /* Inputs */
 .login input {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
     font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.login input:focus {
+    border-color: #2a5298;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.2);
 }
 
 /* Button */
 .login button {
     width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
+    padding: 12px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 15px;
-    transition: background 0.3s ease;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .login button:hover {
-    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login button:active {
+    transform: scale(0.98);
 }
 
 /* Links */
 a {
     display: block;
-    margin-top: 15px;
-    color: #333;
+    margin-top: 18px;
+    color: white;
     text-decoration: none;
     font-size: 14px;
     text-align: center;
+    transition: opacity 0.3s ease;
 }
 
 a:hover {
-    text-decoration: underline;
+    opacity: 0.85;
 }
 
 /* Result Message */
 #result {
-    margin-top: 10px;
-    color: red;
+    margin-top: 12px;
+    color: #ffdddd;
     font-size: 14px;
     text-align: center;
 }
 
-/* Small Devices (Phones) */
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile */
 @media (max-width: 480px) {
     .login {
-        padding: 20px;
+        padding: 25px;
     }
 
     h1 {
@@ -94,6 +124,7 @@ a:hover {
     .login input,
     .login button {
         font-size: 14px;
-        padding: 9px;
+        padding: 10px;
     }
 }
+

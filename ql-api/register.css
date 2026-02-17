@@ -1,3 +1,6 @@
+/* Google Font (Optional – remove if not needed) */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap'); */
+
 /* Reset */
 * {
     box-sizing: border-box;
@@ -7,8 +10,8 @@
 
 /* Body */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,74 +19,103 @@ body {
     padding: 20px;
 }
 
-/* Container Wrapper (optional but recommended) */
+/* Container */
 .container {
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     text-align: center;
 }
 
 /* Heading */
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
-/* Register Form */
+/* Register Card */
 .register {
     display: flex;
     flex-direction: column;
-    width: 100%;
     background: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.6s ease-in-out;
 }
 
 /* Inputs */
 .register input {
-    margin-bottom: 12px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
     font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.register input:focus {
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
 }
 
 /* Button */
 .register button {
-    padding: 10px;
+    padding: 12px;
     border: none;
-    background-color: #333;
+    background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 15px;
-    transition: background 0.3s ease;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .register button:hover {
-    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.register button:active {
+    transform: scale(0.98);
 }
 
 /* Links */
 a {
-    margin-top: 12px;
+    margin-top: 15px;
     text-decoration: none;
-    color: #333;
+    color: white;
     font-size: 14px;
-    display: inline-block;
+    transition: opacity 0.3s ease;
 }
 
 a:hover {
-    text-decoration: underline;
+    opacity: 0.8;
 }
 
 /* Result Message */
 #result {
-    margin-top: 10px;
+    margin-top: 12px;
     font-size: 14px;
+    color: #ffdddd;
 }
 
-/* Mobile Devices */
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile */
 @media (max-width: 480px) {
     .register {
         padding: 20px;
@@ -91,11 +123,5 @@ a:hover {
 
     h1 {
         font-size: 22px;
-    }
-
-    .register input,
-    .register button {
-        font-size: 14px;
-        padding: 9px;
     }
 }
