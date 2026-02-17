@@ -2,6 +2,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
   e.preventDefault();
 
   const username = document.querySelector('input[name="username"]').value;
+  const email = document.querySelector('input[name="email"]').value;
   const password = document.querySelector('input[name="password"]').value;
   const resultDiv = document.getElementById('result');
 
@@ -9,7 +10,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const response = await fetch('/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
+      body: JSON.stringify({ username, email, password })
     });
 
     const data = await response.json();
