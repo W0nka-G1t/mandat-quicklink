@@ -6,7 +6,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
   const resultDiv = document.getElementById('result');
 
   try {
-    const response = await fetch('/register', {
+    const response = await fetch('/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })
