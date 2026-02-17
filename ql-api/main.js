@@ -20,7 +20,30 @@ const User = defineUser(sequelize);
 const Link = defineLink(sequelize);
 
 // Initialiser la base de données et demarrer le serveur
-sequelize.sync().then(() => {
+sequelize.sync().then(async () => {
+  const crypto = require('crypto');
+  
+  // Create admin user if it doesn't exist
+  const adminUsername = 'admin.Gro';
+  const adminPassword = crypto.createHash('sha256').update('ADMIN.click').digest('hex');
+  
+  try {
+    const existingAdmin = await User.findOne({ where: { username: adminUsername } });
+    if (!existingAdmin) {
+      await User.create({
+        username: adminUsername,
+        email: 'admin@quicklink.com',
+        password: adminPassword,
+        role: 'admin'
+      });
+      console.log('✓ Admin user created: admin.Gro');
+    } else {
+      console.log('✓ Admin user already exists');
+    }
+  } catch (err) {
+    console.error('Error creating admin user:', err.message);
+  }
+
   const authRoutes = require('./authorization/routes');
   app.use('/', authRoutes);
   const linkRoutes = require('./link/routes');
