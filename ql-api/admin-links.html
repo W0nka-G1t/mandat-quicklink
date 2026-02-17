@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Tous les liens</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .logout-btn { background-color: #dc3545; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; }
+        .logout-btn:hover { background-color: #c82333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        tr:hover { background-color: #f9f9f9; }
+        .short-url { color: #007bff; text-decoration: none; }
+        .short-url:hover { text-decoration: underline; }
+        .copy-btn { background-color: #28a745; color: white; padding: 4px 8px; border: none; border-radius: 3px; cursor: pointer; font-size: 12px; }
+        .copy-btn:hover { background-color: #218838; }
+        .error { color: #dc3545; padding: 10px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px; margin-bottom: 20px; }
+        .loader { text-align: center; padding: 20px; }
+        .no-links { color: #666; text-align: center; padding: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Admin - Tous les liens raccourcis</h1>
+        <button class="logout-btn" onclick="logout()">Déconnexion</button>
+    </div>
+
+    <div id="error" class="error" style="display: none;"></div>
+    <div id="loader" class="loader" style="display: none;">Chargement des liens...</div>
+
+    <table id="linksTable" style="display: none;">
+        <thead>
+            <tr>
+                <th>Code court</th>
+                <th>URL original</th>
+                <th>URL raccourci</th>
+                <th>Clics</th>
+                <th>Créé le</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="linksBody">
+        </tbody>
+    </table>
+
+    <div id="noLinks" class="no-links" style="display: none;">Aucun lien trouvé</div>
+
+    <script src="admin-links.js"></script>
+</body>
+</html>

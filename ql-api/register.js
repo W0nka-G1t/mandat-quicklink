@@ -16,7 +16,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const data = await response.json();
 
     if (data.success) {
-      resultDiv.innerHTML = `<div style="color:green;">Registration successful! <a href="login.html">Login here</a></div>`;
+      resultDiv.innerHTML = `<div style="color:green;">Inscription réussie! <a href="login.html">se connecter</a></div>`;
       document.getElementById('registerForm').reset();
     } else {
       resultDiv.innerHTML = `<div style="color:red;">${data.error}</div>`;

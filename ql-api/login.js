@@ -15,6 +15,10 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     const data = await response.json();
 
     if (data.success) {
+      // Store token and username in localStorage
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('username', data.user.username);
+      localStorage.setItem('role', data.user.role);
       window.location.href = "index.html";
     } else {
       resultDiv.innerHTML = `<div style="color:red;">Invalid username or password</div>`;

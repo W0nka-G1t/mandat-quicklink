@@ -25,7 +25,7 @@ exports.register = async (req, res) => {
     const accessToken = generateAccessToken(username, user.id);
     res.status(201).json({
       success: true,
-      user: { id: user.id, username: user.username, email: user.email },
+      user: { id: user.id, username: user.username, email: user.email, role: user.role },
       token: accessToken
     });
   } catch (err) {
@@ -41,5 +41,14 @@ exports.login = async (req, res) => {
     return res.status(401).json({ error: 'Invalid credentials' });
 
   const token = generateAccessToken(username, user.id);
-  res.json({ success: true, user, token });
+  res.json({ 
+    success: true, 
+    user: { 
+      id: user.id, 
+      username: user.username, 
+      email: user.email, 
+      role: user.role 
+    }, 
+    token 
+  });
 };
