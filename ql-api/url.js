@@ -33,7 +33,7 @@ document.getElementById('linkForm').addEventListener('submit', async (e) => {
     resultDiv.innerHTML = `<div class="error">Error: ${err.message}</div>`;
   }
 });
-// (!localStorage.getItem('token')) {
-  // window.location.href = 'login.html';
+ (!localStorage.getItem('authtoken')) {
+   window.location.href = 'login.html';
 
-console.log  (localStorage.getItem('token'))
+console.log  (localStorage.getItem('authtoken'))
