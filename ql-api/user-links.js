@@ -19,6 +19,8 @@ function logout() {
 function checkAuth() {
   const token = localStorage.getItem('authToken');
 
+  console.log('user-links checkAuth: token present:', !!token);
+
   if (!token) {
     window.location.href = 'login.html';
     return false;

@@ -5,11 +5,14 @@ document.getElementById('linkForm').addEventListener('submit', async (e) => {
   const resultDiv = document.getElementById('result');
   
   try {
+    const token = localStorage.getItem('authToken');
+    const headers = { 'Content-Type': 'application/json' };
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
     const response = await fetch('/link', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: headers,
       body: JSON.stringify({ url })
     });
     
