@@ -1,3 +1,5 @@
+import './index.css'
+
 // Check authentication status and update UI
 function initializeNavigation() {
   const token = localStorage.getItem('authToken');
@@ -54,3 +56,45 @@ function logout() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', initializeNavigation);
+
+document.getElementById('linkForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const url = document.querySelector('input[name="url"]').value;
+  const resultDiv = document.getElementById('result');
+  
+  try {
+    const token = localStorage.getItem('authToken');
+    const headers = { 'Content-Type': 'application/json' };
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    const response = await fetch('/link', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({ url })
+    });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      resultDiv.innerHTML = `
+        <div class="success">
+          <p>Shortened URL created!</p>
+          <p>Short Code: <strong>${data.shortCode}</strong></p>
+          <p>Short URL: <a href="${data.shortUrl}" target="_blank">section.click${data.shortUrl}</a></p>
+          <p>Original URL: ${data.originalUrl}</p>
+        
+        </div>
+      `;
+      document.querySelector('input[name="url"]').value = '';
+    } else {
+      resultDiv.innerHTML = `<div class="error">Error: ${data.error}</div>`;
+    }
+  } catch (err) {
+    resultDiv.innerHTML = `<div class="error">Error: ${err.message}</div>`;
+  }
+});
+if (!localStorage.getItem('authToken')) {
+  window.location.href = 'login.html';
+}
