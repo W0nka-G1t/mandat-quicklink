@@ -93,15 +93,19 @@ exports.getUserLinks = async (req, res) => {
     const userId = req.user.userId;
     console.log('getUserLinks for userId:', userId);
     
+    // Log total links in DB
+    const totalLinks = await Link.count();
+    console.log('Total links in DB:', totalLinks);
+    
     // Assign any anonymous links to this user
-    await Link.update({ userId: userId }, { where: { userId: null } });
-    console.log('Assigned anonymous links to userId:', userId);
+    const [affectedRows] = await Link.update({ userId: userId }, { where: { userId: null } });
+    console.log('Assigned', affectedRows, 'anonymous links to userId:', userId);
     
     const links = await Link.findAll({ 
       where: { userId }, 
       order: [['createdAt', 'DESC']] 
     });
-    console.log('Found', links.length, 'user links');
+    console.log('Found', links.length, 'user links for userId:', userId);
     res.status(200).json({ success: true, links });
   } catch (err) {
     console.error('getUserLinks error:', err.message);
