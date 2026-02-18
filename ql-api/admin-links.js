@@ -20,18 +20,22 @@ function checkAuth() {
   const token = localStorage.getItem('authToken');
   const role = localStorage.getItem('role');
   
+  console.log('checkAuth: token present:', !!token, 'role:', role);
+  
   if (!token) {
     window.location.href = 'login.html';
     return false;
   }
   
   if (role !== 'admin') {
+    console.log('Access denied: role is not admin');
     document.getElementById('error').style.display = 'block';
     document.getElementById('error').textContent = 'Vous n\'avez pas les permissions pour accéder à cette page. Seuls les administrateurs peuvent voir tous les liens.';
     document.getElementById('loader').style.display = 'none';
     return false;
   }
   
+  console.log('Admin access granted');
   return true;
 }
 
