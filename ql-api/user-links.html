@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes liens - QuickLink</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Mes liens raccourcis</h1>
+        <div style="display: flex; gap: 10px;">
+            <a href="index.html" style="padding: 8px 16px; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px; cursor: pointer;">🏠 Accueil</a>
+            <button class="logout-btn" onclick="logout()">Déconnexion</button>
+        </div>
+    </div>
+
+    <div id="error" class="error" style="display: none;"></div>
+    <div id="loader" class="loader" style="display: none;">Chargement de vos liens...</div>
+
+    <table id="linksTable" style="display: none;">
+        <thead>
+            <tr>
+                <th>Code court</th>
+                <th>URL original</th>
+                <th>URL raccourci</th>
+                <th>Clics</th>
+                <th>Créé le</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="linksBody">
+        </tbody>
+    </table>
+
+    <div id="noLinks" class="no-links" style="display: none;">Vous n'avez créé aucun lien pour le moment</div>
+
+    <script src="user-links.js"></script>
+</body>
+</html>

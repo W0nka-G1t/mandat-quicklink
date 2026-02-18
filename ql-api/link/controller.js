@@ -86,3 +86,16 @@ exports.getAllLinks = async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 };
+
+exports.getUserLinks = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const links = await Link.findAll({ 
+      where: { userId }, 
+      order: [['createdAt', 'DESC']] 
+    });
+    res.status(200).json({ success: true, links });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+};

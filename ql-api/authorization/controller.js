@@ -12,15 +12,12 @@ const generateAccessToken = (username, userId) =>
 
 exports.register = async (req, res) => {
   try {
-    const { username, email, password, firstName, lastName, age } = req.body;
+    const { username, email, password } = req.body;
     const encryptedPassword = encryptPassword(password);
     const user = await User.create({
       username,
       email,
-      password: encryptedPassword,
-      firstName,
-      lastName,
-      age
+      password: encryptedPassword
     });
     const accessToken = generateAccessToken(username, user.id);
     res.status(201).json({

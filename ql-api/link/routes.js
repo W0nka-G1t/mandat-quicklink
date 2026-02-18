@@ -12,6 +12,9 @@ router.get('/all', IsAuthenticated.check, CheckPermission.has('admin'), (req, re
   next();
 }, LinkController.getAllLinks);
 
+// User: voir ses propres liens
+router.get('/my', IsAuthenticated.check, LinkController.getUserLinks);
+
 router.get('/:code', LinkController.getLink);
 
 module.exports = router;
