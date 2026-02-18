@@ -35,5 +35,5 @@ document.getElementById('linkForm').addEventListener('submit', async (e) => {
 });
  (!localStorage.getItem('authtoken')) {
    window.location.href = 'login.html';
-
+ }
 console.log  (localStorage.getItem('authtoken'))
