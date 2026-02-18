@@ -22,6 +22,7 @@ const generateShortCode = () => {
 exports.createLink = async (req, res) => {
   try {
     const { url } = req.body;
+    
 
     // Valide l'input
     if (!validate(req.body)) {
@@ -90,12 +91,15 @@ exports.getAllLinks = async (req, res) => {
 exports.getUserLinks = async (req, res) => {
   try {
     const userId = req.user.userId;
+    console.log('getUserLinks for userId:', userId);
     const links = await Link.findAll({ 
       where: { userId }, 
       order: [['createdAt', 'DESC']] 
     });
+    console.log('Found', links.length, 'user links');
     res.status(200).json({ success: true, links });
   } catch (err) {
+    console.error('getUserLinks error:', err.message);
     res.status(500).json({ success: false, error: err.message });
   }
 };
