@@ -34,5 +34,5 @@ document.getElementById('linkForm').addEventListener('submit', async (e) => {
   }
 });
 if (!localStorage.getItem('token')) {
-  window.location.href = 'index.html';
+  window.location.href = 'login.html';
 }
