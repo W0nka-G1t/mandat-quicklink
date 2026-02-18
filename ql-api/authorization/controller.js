@@ -12,7 +12,7 @@ const generateAccessToken = (username, userId) =>
 
 exports.register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password } = req.body;  
     const encryptedPassword = encryptPassword(password);
     const user = await User.create({
       username,
