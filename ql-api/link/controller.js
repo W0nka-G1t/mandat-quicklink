@@ -22,7 +22,7 @@ const generateShortCode = () => {
 exports.createLink = async (req, res) => {
   try {
     const { url } = req.body;
-    
+
 
     // Valide l'input
     if (!validate(req.body)) {
@@ -92,6 +92,11 @@ exports.getUserLinks = async (req, res) => {
   try {
     const userId = req.user.userId;
     console.log('getUserLinks for userId:', userId);
+    
+    // Assign any anonymous links to this user
+    await Link.update({ userId: userId }, { where: { userId: null } });
+    console.log('Assigned anonymous links to userId:', userId);
+    
     const links = await Link.findAll({ 
       where: { userId }, 
       order: [['createdAt', 'DESC']] 
