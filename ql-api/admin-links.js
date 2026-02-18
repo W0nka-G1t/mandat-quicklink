@@ -15,28 +15,20 @@ function logout() {
   window.location.href = 'login.html';
 }
 
-// Check if user is logged in and is admin
+// Check if user is logged in
 function checkAuth() {
   const token = localStorage.getItem('authToken');
-  const role = localStorage.getItem('role');
   
   if (!token) {
     window.location.href = 'login.html';
     return false;
   }
   
-  if (role !== 'admin') {
-    document.getElementById('error').style.display = 'block';
-    document.getElementById('error').textContent = 'Vous n\'avez pas les permissions pour accéder à cette page. Seuls les administrateurs peuvent voir tous les liens.';
-    document.getElementById('loader').style.display = 'none';
-    return false;
-  }
-  
   return true;
 }
 
-// Load and display all links
-async function loadAllLinks() {
+// Load and display user's links
+async function loadUserLinks() {
   if (!checkAuth()) return;
 
   const token = localStorage.getItem('authToken');
@@ -50,8 +42,8 @@ async function loadAllLinks() {
   errorDiv.style.display = 'none';
 
   try {
-    console.log('Fetching /link/all with token:', token ? 'present' : 'missing');
-    const response = await fetch('/link/all', {
+    console.log('Fetching /link/my with token:', token ? 'present' : 'missing');
+    const response = await fetch('/link/my', {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -65,11 +57,7 @@ async function loadAllLinks() {
     loader.style.display = 'none';
 
     if (!response.ok) {
-      if (response.status === 403) {
-        errorDiv.textContent = `Accès refusé. ${data.error || 'Vous devez être administrateur pour voir tous les liens.'}`;
-      } else {
-        errorDiv.textContent = `Erreur: ${response.status} - ${data.error || response.statusText}`;
-      }
+      errorDiv.textContent = `Erreur: ${response.status} - ${data.error || response.statusText}`;
       errorDiv.style.display = 'block';
       return;
     }
@@ -80,22 +68,9 @@ async function loadAllLinks() {
       return;
     }
 
-    // Get unique links by originalUrl
-    const uniqueLinks = {};
-    data.links.forEach(link => {
-      if (!uniqueLinks[link.originalUrl]) {
-        uniqueLinks[link.originalUrl] = link;
-      }
-    });
-
-    // Convert back to array and sort
-    const uniqueLinksArray = Object.values(uniqueLinks).sort((a, b) => {
-      return new Date(b.createdAt) - new Date(a.createdAt);
-    });
-
     // Populate table
     linksBody.innerHTML = '';
-    uniqueLinksArray.forEach(link => {
+    data.links.forEach(link => {
       const row = document.createElement('tr');
       const originalUrl = link.originalUrl.length > 50 ? link.originalUrl.substring(0, 50) + '...' : link.originalUrl;
       const shortUrl = `${window.location.origin}/link/${link.shortCode}`;
@@ -134,4 +109,4 @@ async function loadAllLinks() {
 }
 
 // Load links when page loads
-document.addEventListener('DOMContentLoaded', loadAllLinks);
+document.addEventListener('DOMContentLoaded', loadUserLinks);
