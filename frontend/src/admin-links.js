@@ -1,3 +1,6 @@
+import './admin.css'
+
+
 // Helper function to copy to clipboard
 function copyToClipboard(text) {
   navigator.clipboard.writeText(text).then(() => {
@@ -15,22 +18,32 @@ function logout() {
   window.location.href = 'login.html';
 }
 
-// Check if user is logged in
+// Check if user is logged in and is admin
 function checkAuth() {
   const token = localStorage.getItem('authToken');
-
-  console.log('user-links checkAuth: token present:', !!token);
-
+  const role = localStorage.getItem('role');
+  
+  console.log('checkAuth: token present:', !!token, 'role:', role);
+  
   if (!token) {
     window.location.href = 'login.html';
     return false;
   }
-
+  
+  if (role !== 'admin') {
+    console.log('Access denied: role is not admin');
+    document.getElementById('error').style.display = 'block';
+    document.getElementById('error').textContent = 'Vous n\'avez pas les permissions pour accéder à cette page. Seuls les administrateurs peuvent voir tous les liens.';
+    document.getElementById('loader').style.display = 'none';
+    return false;
+  }
+  
+  console.log('Admin access granted');
   return true;
 }
 
-// Load and display user's links
-async function loadUserLinks() {
+// Load and display all links
+async function loadAllLinks() {
   if (!checkAuth()) return;
 
   const token = localStorage.getItem('authToken');
@@ -44,8 +57,8 @@ async function loadUserLinks() {
   errorDiv.style.display = 'none';
 
   try {
-    console.log('Fetching /link/my with token:', token ? 'present' : 'missing');
-    const response = await fetch('/link/my', {
+    console.log('Fetching /link/all with token:', token ? 'present' : 'missing');
+    const response = await fetch('/link/all', {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -59,7 +72,11 @@ async function loadUserLinks() {
     loader.style.display = 'none';
 
     if (!response.ok) {
-      errorDiv.textContent = `Erreur: ${response.status} - ${data.error || response.statusText}`;
+      if (response.status === 403) {
+        errorDiv.textContent = `Accès refusé. ${data.error || 'Vous devez être administrateur pour voir tous les liens.'}`;
+      } else {
+        errorDiv.textContent = `Erreur: ${response.status} - ${data.error || response.statusText}`;
+      }
       errorDiv.style.display = 'block';
       return;
     }
@@ -70,9 +87,22 @@ async function loadUserLinks() {
       return;
     }
 
+    // Get unique links by originalUrl
+    const uniqueLinks = {};
+    data.links.forEach(link => {
+      if (!uniqueLinks[link.originalUrl]) {
+        uniqueLinks[link.originalUrl] = link;
+      }
+    });
+
+    // Convert back to array and sort
+    const uniqueLinksArray = Object.values(uniqueLinks).sort((a, b) => {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+
     // Populate table
     linksBody.innerHTML = '';
-    data.links.forEach(link => {
+    uniqueLinksArray.forEach(link => {
       const row = document.createElement('tr');
       const originalUrl = link.originalUrl.length > 50 ? link.originalUrl.substring(0, 50) + '...' : link.originalUrl;
       const shortUrl = `${window.location.origin}/link/${link.shortCode}`;
@@ -111,4 +141,4 @@ async function loadUserLinks() {
 }
 
 // Load links when page loads
-document.addEventListener('DOMContentLoaded', loadUserLinks);
+document.addEventListener('DOMContentLoaded', loadAllLinks);

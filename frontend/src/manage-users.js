@@ -1,3 +1,4 @@
+import './manage.css'
 // Check if user is logged in and is admin
 function checkAuth() {
   const token = localStorage.getItem('authToken');
