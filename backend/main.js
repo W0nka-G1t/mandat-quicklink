@@ -45,11 +45,11 @@ sequelize.sync().then(async () => {
   }
 
   const authRoutes = require('./authorization/routes');
-  app.use('/', authRoutes);
+  app.use('/api', authRoutes);
   const linkRoutes = require('./link/routes');
-  app.use('/link', linkRoutes);
+  app.use('/api/link', linkRoutes);
   const userRoutes = require('./users/routes');
-  app.use('/user', userRoutes);
+  app.use('/api/user', userRoutes);
   
   app.use((err, req, res, next) => {
     console.error(err.stack);
@@ -59,10 +59,12 @@ sequelize.sync().then(async () => {
     });
   });
 
+  app.get('/api/test', (req, res) => {
+    res.send('hello world')
+  })
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
 }).catch(err => {
   console.error('Database sync failed:', err);
   process.exit(1);
 });
-         

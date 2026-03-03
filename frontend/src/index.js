@@ -1,4 +1,5 @@
 import './index.css'
+import {API_URL} from './config/api'
 
 // Check authentication status and update UI
 function initializeNavigation() {
@@ -69,7 +70,7 @@ document.getElementById('linkForm').addEventListener('submit', async (e) => {
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
-    const response = await fetch('/link', {
+    const response = await fetch(`${API_URL}/link`, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify({ url })

@@ -1,0 +1,18 @@
+{
+  "name": "mandat-quicklink",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  
+  "scripts": {
+    "start": "concurrently 'npm start --prefix backend' 'npm run dev --prefix frontend' ",
+    "install:all": "npm install --prefix frontend && npm install --prefix backend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

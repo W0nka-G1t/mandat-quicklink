@@ -1,4 +1,6 @@
 import './manage.css'
+import {API_URL} from './config/api'
+
 // Check if user is logged in and is admin
 function checkAuth() {
   const token = localStorage.getItem('authToken');
@@ -48,7 +50,7 @@ async function updateUserRole(userId, newRole, username) {
   const token = localStorage.getItem('authToken');
   
   try {
-    const response = await fetch('/user/update-role', {
+    const response = await fetch(`${API_URL}user/update-role`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -81,7 +83,7 @@ async function deleteUser(userId, username) {
   const token = localStorage.getItem('authToken');
   
   try {
-    const response = await fetch('/user/delete', {
+    const response = await fetch(`${API_URL}user/delete`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -122,7 +124,7 @@ async function loadAllUsers() {
 
   try {
     console.log('Fetching /user/all with token:', token ? 'present' : 'missing');
-    const response = await fetch('/user/all', {
+    const response = await fetch(`${API_URL}user/all`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'

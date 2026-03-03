@@ -1,4 +1,6 @@
 import './login.css'
+import {API_URL} from './config/api'
+
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -7,7 +9,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   const resultDiv = document.getElementById('result');
 
   try {
-    const response = await fetch('/login', {
+    const response = await fetch(`${API_URL}login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })
@@ -22,7 +24,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
       localStorage.setItem('authToken', data.token);
       localStorage.setItem('username', data.user.username);
       localStorage.setItem('role', data.user.role);
-      window.location.href = "index.html";
+      window.location.href = " index.html";
     } else {
       resultDiv.innerHTML = `<div style="color:red;">Invalid username or password</div>`;
     }

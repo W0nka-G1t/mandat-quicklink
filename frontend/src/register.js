@@ -1,3 +1,4 @@
+import {API_URL} from './config/api';
 import './register.css'
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -8,7 +9,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
   const resultDiv = document.getElementById('result');
 
   try {
-    const response = await fetch('/signup', {
+    const response = await fetch(`${API_URL}/api/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, email, password })

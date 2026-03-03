@@ -1,6 +1,9 @@
 import './admin.css'
 
 
+import {API_URL} from './config/api'
+
+
 // Helper function to copy to clipboard
 function copyToClipboard(text) {
   navigator.clipboard.writeText(text).then(() => {
@@ -58,7 +61,7 @@ async function loadAllLinks() {
 
   try {
     console.log('Fetching /link/all with token:', token ? 'present' : 'missing');
-    const response = await fetch('/link/all', {
+    const response = await fetch(`${API_URL}link/all`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -89,7 +92,7 @@ async function loadAllLinks() {
 
     // Get unique links by originalUrl
     const uniqueLinks = {};
-    data.links.forEach(link => {
+    data.links.forEach(link => {    
       if (!uniqueLinks[link.originalUrl]) {
         uniqueLinks[link.originalUrl] = link;
       }
