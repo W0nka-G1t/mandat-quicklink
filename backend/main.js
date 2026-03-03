@@ -5,6 +5,7 @@ const app = express();
 app.set('trust proxy', 1);
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
+app.use('/frontend', express.static(path.join(__dirname, '../frontend')));
 
 app.get('/status', (req, res) => {
   res.json({
