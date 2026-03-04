@@ -16,5 +16,5 @@ router.get('/all', IsAuthenticated.check, CheckPermission.has('admin'), (req, re
 router.get('/my', IsAuthenticated.check, LinkController.getUserLinks);
 
 router.get('/:code', LinkController.getLink);
-
+router.post('/:code/qr', LinkController.generateQRCode);
 module.exports = router;

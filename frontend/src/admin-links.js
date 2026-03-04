@@ -1,8 +1,8 @@
 import './admin.css'
 
+import { API_URL } from './config/api'
 
-import {API_URL} from './config/api'
-
+import { generateQRCode } from './modal-qr';
 
 // Helper function to copy to clipboard
 function copyToClipboard(text) {
@@ -25,14 +25,14 @@ function logout() {
 function checkAuth() {
   const token = localStorage.getItem('authToken');
   const role = localStorage.getItem('role');
-  
+
   console.log('checkAuth: token present:', !!token, 'role:', role);
-  
+
   if (!token) {
     window.location.href = 'login.html';
     return false;
   }
-  
+
   if (role !== 'admin') {
     console.log('Access denied: role is not admin');
     document.getElementById('error').style.display = 'block';
@@ -40,7 +40,7 @@ function checkAuth() {
     document.getElementById('loader').style.display = 'none';
     return false;
   }
-  
+
   console.log('Admin access granted');
   return true;
 }
@@ -92,7 +92,7 @@ async function loadAllLinks() {
 
     // Get unique links by originalUrl
     const uniqueLinks = {};
-    data.links.forEach(link => {    
+    data.links.forEach(link => {
       if (!uniqueLinks[link.originalUrl]) {
         uniqueLinks[link.originalUrl] = link;
       }
@@ -126,10 +126,22 @@ async function loadAllLinks() {
         <td>${link.clicks || 0}</td>
         <td>${createdAt}</td>
         <td>
-          <button class="copy-btn" onclick="copyToClipboard('${shortUrl}')">Copier</button>
+          <button id="copy-btn-${link.shortCode}" class="copy-btn" onclick="copyToClipboard('${shortUrl}')">Copier</button>
+          <button id="qr-btn-${link.shortCode}" class="qr-btn" data-shortcode="${link.shortCode}">QR Code</button>
         </td>
       `;
       linksBody.appendChild(row);
+      console.log(document.getElementById(`qr-btn-${link.shortCode}`));
+
+      function handleGenerateQRCode(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const shortCode = e.target.getAttribute('data-shortcode');
+        generateQRCode(shortCode);
+      }
+      document.getElementById(`qr-btn-${link.shortCode}`).addEventListener('click', handleGenerateQRCode);
+
     });
 
     table.style.display = 'table';

@@ -1,6 +1,8 @@
 import './index.css'
 import {API_URL} from './config/api'
+import './modal.css' 
 
+import { generateQRCode } from './modal-qr.js';
 // Check authentication status and update UI
 function initializeNavigation() {
   const token = localStorage.getItem('authToken');
@@ -70,7 +72,7 @@ document.getElementById('linkForm').addEventListener('submit', async (e) => {
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
-    const response = await fetch(`${API_URL}/link`, {
+    const response = await fetch(`${API_URL}link`, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify({ url })
@@ -79,20 +81,24 @@ document.getElementById('linkForm').addEventListener('submit', async (e) => {
     const data = await response.json();
     
     if (data.success) {
-      resultDiv.innerHTML = `
-        <div class="success">
-          <p>Shortened URL created!</p>
-          <p>Short Code: <strong>${data.shortCode}</strong></p>
-          <p>Short URL: <a href="${data.shortUrl}" target="_blank">section.click${data.shortUrl}</a></p>
-          <p>Original URL: ${data.originalUrl}</p>
-        
-        </div>
-      `;
-      document.querySelector('input[name="url"]').value = '';
+
+          resultDiv.innerHTML = `
+            <div class="success">
+              <p>Shortened URL created!</p>
+              <p>Short Code: <strong>${data.shortCode}</strong></p>
+              <p>Short URL: <a href="${data.shortUrl}" target="_blank">section.click${data.shortUrl}</a></p>
+              <p>Original URL: ${data.originalUrl}</p>
+              <div class="qr-generated"></div> 
+            </div>`;
+  
+          document.querySelector('input[name="url"]').value = '';
+
+          generateQRCode(data.shortCode, resultDiv.querySelector('.qr-generated'));
     } else {
       resultDiv.innerHTML = `<div class="error">Error: ${data.error}</div>`;
     }
-  } catch (err) {
+  } 
+  catch (err) {
     resultDiv.innerHTML = `<div class="error">Error: ${err.message}</div>`;
   }
 });

@@ -112,3 +112,21 @@ exports.getUserLinks = async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 };
+exports.generateQRCode = async (req, res) => {
+  try {
+    const { code } = req.params;
+    const link = await Link.findOne({ where: { shortCode: code.toUpperCase() } });
+
+    if (!link) {
+      return res.status(404).json({ success: false, error: 'Link not found' });
+    }
+
+    // Generate QR code for the short URL
+    const QRCode = require('qrcode');
+    const shortUrl = `https://section.click/link/${link.shortCode}`;
+    const qrCodeDataUrl = await QRCode.toDataURL(shortUrl);
+
+    res.status(200).json({ success: true, qrCode: qrCodeDataUrl });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }};  
