@@ -216,7 +216,12 @@ async function loadAllUsers() {
     errorDiv.style.display = 'block';
     console.error('Error loading users:', err);
   }
+
+  document.getElementById("goBack").addEventListener('click', goBack);
+  document.getElementById("logout").addEventListener('click', logout);
 }
 
 // Load users when page loads
 document.addEventListener('DOMContentLoaded', loadAllUsers);
+
+

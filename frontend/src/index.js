@@ -97,5 +97,5 @@ document.getElementById('linkForm').addEventListener('submit', async (e) => {
   }
 });
 if (!localStorage.getItem('authToken')) {
-  window.location.href = 'login.html';
+  window.location.href = './login.html';
 }

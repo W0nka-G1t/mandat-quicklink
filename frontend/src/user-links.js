@@ -110,7 +110,9 @@ async function loadUserLinks() {
     errorDiv.textContent = `Erreur: ${err.message}`;
     errorDiv.style.display = 'block';
     console.error('Error loading links:', err);
+
   }
+  document.getElementById('logoutBtn').addEventListener('click', logout);
 }
 
 // Load links when page loads
