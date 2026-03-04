@@ -21,12 +21,28 @@ function logout() {
   window.location.href = 'login.html';
 }
 
+function handleGenerateQRCode(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const shortCode = e.target.getAttribute('data-shortcode');
+  generateQRCode(shortCode);
+}
+
+function handleCopy(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const shortCode = e.target.getAttribute('data-shortcode');
+  generateQRCode(shortCode);
+}
+
+
+
 // Check if user is logged in and is admin
 function checkAuth() {
   const token = localStorage.getItem('authToken');
   const role = localStorage.getItem('role');
-
-  console.log('checkAuth: token present:', !!token, 'role:', role);
 
   if (!token) {
     window.location.href = 'login.html';
@@ -34,14 +50,12 @@ function checkAuth() {
   }
 
   if (role !== 'admin') {
-    console.log('Access denied: role is not admin');
     document.getElementById('error').style.display = 'block';
     document.getElementById('error').textContent = 'Vous n\'avez pas les permissions pour accéder à cette page. Seuls les administrateurs peuvent voir tous les liens.';
     document.getElementById('loader').style.display = 'none';
     return false;
   }
 
-  console.log('Admin access granted');
   return true;
 }
 
@@ -60,7 +74,6 @@ async function loadAllLinks() {
   errorDiv.style.display = 'none';
 
   try {
-    console.log('Fetching /link/all with token:', token ? 'present' : 'missing');
     const response = await fetch(`${API_URL}link/all`, {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -68,10 +81,7 @@ async function loadAllLinks() {
       }
     });
 
-    console.log('Response status:', response.status);
     const data = await response.json();
-    console.log('Response data:', data);
-
     loader.style.display = 'none';
 
     if (!response.ok) {
@@ -126,20 +136,12 @@ async function loadAllLinks() {
         <td>${link.clicks || 0}</td>
         <td>${createdAt}</td>
         <td>
-          <button id="copy-btn-${link.shortCode}" class="copy-btn" onclick="copyToClipboard('${shortUrl}')">Copier</button>
+          <button id="copy-btn-${link.shortCode}" class="copy-btn" data-shortcode="${link.shortCode}">Copier</button>
           <button id="qr-btn-${link.shortCode}" class="qr-btn" data-shortcode="${link.shortCode}">QR Code</button>
         </td>
       `;
       linksBody.appendChild(row);
-      console.log(document.getElementById(`qr-btn-${link.shortCode}`));
-
-      function handleGenerateQRCode(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        const shortCode = e.target.getAttribute('data-shortcode');
-        generateQRCode(shortCode);
-      }
+      document.getElementById(`copy-btn-${link.shortCode}`).addEventListener('click', handleCopy);
       document.getElementById(`qr-btn-${link.shortCode}`).addEventListener('click', handleGenerateQRCode);
 
     });
@@ -151,7 +153,6 @@ async function loadAllLinks() {
     loader.style.display = 'none';
     errorDiv.textContent = `Erreur: ${err.message}`;
     errorDiv.style.display = 'block';
-    console.error('Error loading links:', err);
   }
   document.getElementById('logoutBtn').addEventListener('click', logout);
 }
