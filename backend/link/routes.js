@@ -13,7 +13,7 @@ router.get('/all', IsAuthenticated.check, CheckPermission.has('admin'), (req, re
 }, LinkController.getAllLinks);
 
 // User: voir ses propres liens
-router.get('/my', IsAuthenticated.check, LinkController.getUserLinks);
+router.get('/api/my', IsAuthenticated.check, LinkController.getUserLinks);
 
 router.get('/:code', LinkController.getLink);
 router.post('/:code/qr', LinkController.generateQRCode);

@@ -47,7 +47,7 @@ sequelize.sync().then(async () => {
   const authRoutes = require('./authorization/routes');
   app.use('/api', authRoutes);
   const linkRoutes = require('./link/routes');
-  app.use('/api/link', linkRoutes);
+  app.use('/link', linkRoutes);
   const userRoutes = require('./users/routes');
   app.use('/api/user', userRoutes);
   

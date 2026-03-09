@@ -1,5 +1,5 @@
 import './manage.css'
-import {API_URL} from './config/api'
+import {LINK_URL} from './config/api'
 
 // Helper function to copy to clipboard
 function copyToClipboard(text) {
@@ -48,7 +48,7 @@ async function loadUserLinks() {
 
   try {
     console.log('Fetching /link/my with token:', token ? 'present' : 'missing');
-    const response = await fetch(`${API_URL}link/my`, {
+    const response = await fetch(`${LINK_URL}/my`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'

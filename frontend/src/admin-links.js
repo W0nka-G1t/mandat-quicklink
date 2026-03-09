@@ -1,6 +1,6 @@
 import './admin.css'
 
-import { API_URL } from './config/api'
+import { API_URL, LINK_URL } from './config/api'
 
 import { generateQRCode } from './modal-qr';
 
@@ -74,7 +74,7 @@ async function loadAllLinks() {
   errorDiv.style.display = 'none';
 
   try {
-    const response = await fetch(`${API_URL}link/all`, {
+    const response = await fetch(`${LINK_URL}/all`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'

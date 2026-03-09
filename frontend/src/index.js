@@ -1,5 +1,5 @@
 import './index.css'
-import {API_URL} from './config/api'
+import {API_URL, LINK_URL} from './config/api'
 import './modal.css' 
 
 import { generateQRCode } from './modal-qr.js';
@@ -72,7 +72,7 @@ document.getElementById('linkForm').addEventListener('submit', async (e) => {
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
-    const response = await fetch(`${API_URL}link`, {
+    const response = await fetch(`${LINK_URL}`, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify({ url })

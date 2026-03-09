@@ -1,10 +1,10 @@
-import { API_URL } from './config/api'
+import { API_URL, LINK_URL } from './config/api'
 
 import './modal.css'
 
 export const generateQRCode = function (shortCode, parentElement) {
 
-  fetch(`${API_URL}link/${shortCode}/qr`, {
+  fetch(`${LINK_URL}/${shortCode}/qr`, {
     method: 'POST'
   })
     .then(response => response.json())
