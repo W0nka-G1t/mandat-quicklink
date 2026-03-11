@@ -1,0 +1,232 @@
+/* Optional Google Font */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap'); */
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body */
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background-color: #0f1e3d;
+  /* Dark Blue Background */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* Logo */
+.logo {
+  max-width: 150px;
+  width: 100%;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 28px;
+}
+
+/* Link Form/Card */
+.link {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  /* Spacing between input and button */
+  background-color: #ffffff;
+  padding: 35px 30px;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  width: 100%;
+  max-width: 450px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Input */
+.link input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.link input:focus {
+  border-color: #0f1e3d;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(15, 30, 61, 0.15);
+}
+
+/* Button */
+.link button {
+  padding: 12px;
+  background-color: #0f1e3d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+.link button:hover {
+  background-color: #1b2f5c;
+  transform: translateY(-2px);
+}
+
+.link button:active {
+  transform: scale(0.98);
+}
+
+/* Links */
+a {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #dfe6ff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Result Message */
+#result {
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+  color: #ff6b6b;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tablet Responsive - Medium screens (481px - 768px) */
+@media (max-width: 768px) {
+  body {
+    padding: 30px 15px;
+  }
+
+  .logo {
+    max-width: 140px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+
+  .link {
+    padding: 30px 25px;
+    max-width: 400px;
+  }
+
+  .link input,
+  .link button {
+    font-size: 14px;
+    padding: 11px;
+  }
+
+  a {
+    font-size: 13px;
+    margin-top: 15px;
+  }
+}
+
+/* Mobile Responsive - Small screens (max 480px) */
+@media (max-width: 480px) {
+  body {
+    padding: 20px 15px;
+    justify-content: center;
+  }
+
+  .logo {
+    max-width: 120px;
+    margin-bottom: 15px;
+  }
+
+  h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .link {
+    padding: 25px 20px;
+    max-width: 100%;
+    gap: 15px;
+  }
+
+  .link input,
+  .link button {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  a {
+    font-size: 12px;
+    margin-top: 12px;
+  }
+
+  #result {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+}
+
+/* Extra small screens (max 360px) */
+@media (max-width: 360px) {
+  body {
+    padding: 15px 10px;
+  }
+
+  .logo {
+    max-width: 100px;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .link {
+    padding: 20px 15px;
+    gap: 12px;
+  }
+
+  .link input,
+  .link button {
+    font-size: 13px;
+    padding: 9px 10px;
+  }
+}
